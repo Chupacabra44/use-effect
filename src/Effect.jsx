@@ -4,11 +4,11 @@ function Effect() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    console.log("Mounting");
+    console.log("Mounting + Update");
     setTimeout(() => {
       alert("data fetched");
-    }, 3000);
-  }, []);
+    }, 1000);
+  }, [count]);
 
   console.log("Render");
 
