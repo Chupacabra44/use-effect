@@ -15,8 +15,6 @@ const App = () => {
     getData();
   }, []);
 
-  const { name, email, picture } = user;
-
   return (
     <div className="app">
       <Header user={user} />
