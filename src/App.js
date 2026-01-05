@@ -1,15 +1,28 @@
-import { useState } from "react";
-import Effect from "./Effect";
+import { useState, useEffect } from "react";
+import Header from "./components/header/Header";
+import Main from "./components/main/Main";
 
-function App() {
-  const [show, setShow] = useState(true);
+const App = () => {
+  const [user, setUser] = useState("");
+
+  const getData = () => {
+    fetch("https://randomuser.me/api/")
+      .then((response) => response.json())
+      .then((data) => setUser(data.results[0]));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const { name, email, picture } = user;
 
   return (
     <div className="app">
-      <button onClick={() => setShow(!show)}>{show ? "Hide" : "Show"}</button>
-      {show && <Effect />}
+      <Header user={user} />
+      <Main {...user} getData={getData} />
     </div>
   );
-}
+};
 
 export default App;
